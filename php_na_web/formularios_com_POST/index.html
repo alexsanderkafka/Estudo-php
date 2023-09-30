@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="resultado.php" method="POST">
+        <label for="marca">Marca:</label>
+        <input type="text" name="marca"><br><br>
+
+        <label for="preco">Preço:</label>
+        <input type="text" name="preco"><br><br>
+
+        <input type="checkbox" name="opcionais[]" value="Teto solar">Teto solar<br>
+        <input type="checkbox" name="opcionais[]" value="Película">Película<br>
+        <input type="checkbox" name="opcionais[]" value="Blindado">Blindado<br>
+
+        <br><input type="submit" value="Enviar"><br>
+    </form>
+</body>
+</html>
