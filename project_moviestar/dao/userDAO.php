@@ -17,8 +17,10 @@
             $user = new User();
 
             $user->id = $data["id"];
-            $user->name = $data["name"];
+            $user->name = $data["nome"];
             $user->lastname = $data["lastname"];
+            $user->email = $data["email"];
+            $user->password = $data["password"];
             $user->image = $data["image"];
             $user->bio = $data["bio"];
             $user->token = $data["token"];
@@ -52,10 +54,34 @@
 
         }
 
-        public function verifyToken($protected = false){
+        public function verifyToken($protected = false) {
 
+          if(!empty($_SESSION["token"])) {
+    
+            // Pega o token da session
+            $token = $_SESSION["token"];
+    
+            $user = $this->findByToken($token);
+    
+            if($user) {
+              return $user;
+            } 
+            else if($protected) {
+    
+              // Redireciona usuário não autenticado
+              $this->message->setMessage("Faça a autenticação para acessar esta página!", "error", "index.php");
+    
+            }
+    
+          } 
+          else if($protected) {
+    
+            // Redireciona usuário não autenticado
+            $this->message->setMessage("Faça a autenticação para acessar esta página!", "error", "index.php");
+    
+          }
+    
         }
-
         public function setTokenToSession($token, $redirect = true){
           // Salvar token na session
           $_SESSION["token"] = $token;
@@ -68,7 +94,7 @@
         }
 
         public function findByEmail($email){
-            if($email != "" && $this->conn != "") {
+            if($email != "") {
 
                 $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
         
@@ -99,6 +125,38 @@
         }
 
         public function findByToken($token){
+          if($token != "") {
+
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
+    
+            $stmt->bindParam(":token", $token);
+    
+            $stmt->execute();
+    
+            if($stmt->rowCount() > 0) {
+    
+              $data = $stmt->fetch();
+              $user = $this->buildUser($data); 
+              
+              return $user;
+    
+            } 
+            else {
+              return false;
+            }
+    
+          } 
+          else {
+            return false;
+          }
+        }
+
+        public function destroyToken(){
+          //Remove o token da session
+          $_SESSION["token"] = "";
+
+          //Redirecionar e apresentar a mensagem de sucesso
+          $this->message->setMessage("Você fez o logout com sucesso", "success", "index.php");
 
         }
 

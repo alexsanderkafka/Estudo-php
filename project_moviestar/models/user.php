@@ -3,7 +3,8 @@
     Class User {
         public $id;
         public $name;
-        public $lasname;
+        public $lastname;
+        public $email;
         public $password;
         public $image;
         public $bio;
@@ -28,6 +29,7 @@
         public function findByEmail($email);
         public function findById($id);
         public function findByToken($token);
+        public function destroyToken();
         public function changePassword(User $user);
     }
 ?>
