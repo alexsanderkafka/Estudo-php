@@ -18,6 +18,10 @@
             return password_hash($password, PASSWORD_DEFAULT);
         }
 
+        public function getFullName($user){
+            return $user->name . " " . $user->lastname;
+        }
+
     }
 
     interface UserDAOInterface{
