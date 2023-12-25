@@ -53,7 +53,7 @@
       <h1 class="page-title"><?= $movie->title?></h1>
       <p class="movie-details">
         <span>Duração: <?=$movie->length?></span>
-        <span class="pipe">/</span>
+        <span class="pipe"></span>
         <span><?= $movie->category?></span>
         <span class="pipe"></span>
         <span><i class="fas fa-star"></i>9</span>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="col-md-4">
-        <div class="movie-image-container" style="background-image: url(<?=$BASE_URL?>/img/movies/<?=$movie->image?>)"></div>
+      <div class="movie-image-container" style="background-image: url('<?= $BASE_URL ?>img/movies/<?= $movie->image ?>')"></div>
     </div>
 
     <div class="offset-md-1 col-md-10" id="reviews-container">
