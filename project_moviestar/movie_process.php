@@ -58,7 +58,7 @@
 
                     imagejpeg($imageFile, "./img/movies/" . $imageName, 100);
 
-                    $movieData->image = $imageName;
+                    $movie->image = $imageName;
                 }
                 else{
                     $message->setMessage("Tipo inválido de imagem, insira png ou jpg!", "error", "back");    
