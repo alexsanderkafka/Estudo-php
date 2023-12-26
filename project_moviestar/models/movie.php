@@ -24,7 +24,7 @@
         public function findById($id);
         public function findByTitle($title);
         public function create(Movie $movie);
-        public function uptade(Movie $movie);
+        public function update(Movie $movie);
         public function destroy($id);
     }
 ?>
