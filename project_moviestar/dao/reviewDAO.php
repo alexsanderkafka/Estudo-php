@@ -28,7 +28,18 @@
         }
 
         public function create(Review $review){
+            $stmt = $this->conn->prepare("INSERT INTO review (rating, review, users_id, movies_id)
+                                           VALUES (:rating, :review, :users_id, :movies_id)");
+            
+            $stmt->bindParam(":rating", $review->rating);
+            $stmt->bindParam(":review", $review->review);
+            $stmt->bindParam(":users_id", $review->users_id);
+            $stmt->bindParam(":movies_id", $review->movies_id);
 
+            $stmt->execute();
+
+            //Mensagem de sucesso por adicionar filme
+            $this->message->setMessage("Crítica adicionado com sucesso!", "success", "index.php");
         }
 
         public function getMoviesReview($id, $review){
