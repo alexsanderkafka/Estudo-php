@@ -56,7 +56,7 @@
         <button class="btn my-2 my-sm-0" type="submit">
           <i class="fas fa-search"></i>
         </button>
-      </form>
+        </form>
 
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav">
