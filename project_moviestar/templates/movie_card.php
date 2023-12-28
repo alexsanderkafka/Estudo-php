@@ -9,7 +9,7 @@
   <div class="card-img-top" style="background-image: url('<?= $BASE_URL ?>img/movies/<?= $movie->image ?>')"></div>
   <div class="card-body">
     <p class="card-rating">
-      <span class="rating">9</span>
+      <span class="rating"><?= $movie->rating?></span>
     </p>
     <h5 class="card-title">
    <i class="fas fa-star"></i>

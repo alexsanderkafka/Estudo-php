@@ -96,7 +96,25 @@
         }
 
         public function getRatings($id){
+            $stmt = $this->conn->prepare("SELECT AVG(rating) as avg_rating FROM review
+                                          WHERE movies_id = :movies_id");
 
+            $stmt->bindParam(":movies_id", $id);
+
+            $stmt->execute();
+
+            $reviews = $stmt->fetchAll();
+
+            $rating = $reviews[0]["avg_rating"];
+
+            if($rating > 0){
+                $rating = number_format($rating, 2);
+            }
+            else{
+                $rating = "Não avaliado";
+            }
+
+            return $rating;
         }
 
         

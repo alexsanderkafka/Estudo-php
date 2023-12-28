@@ -25,7 +25,7 @@
   }
   else{
 
-    $userData = $userDao->findById();
+    $userData = $userDao->findById($id);
 
     //Se não encontrar usuário
     if(!$userData){
